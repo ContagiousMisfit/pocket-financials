@@ -3,11 +3,12 @@ package com.ciandt.cleanarchitechture.application.usecase.posting.list;
 import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
 import com.ciandt.cleanarchitechture.domain.entity.PostingType;
 import com.ciandt.cleanarchitechture.domain.entity.UserEntity;
+import lombok.Getter;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+@Getter
 public class ListFinancialPostingOutput {
 
     private Long id;

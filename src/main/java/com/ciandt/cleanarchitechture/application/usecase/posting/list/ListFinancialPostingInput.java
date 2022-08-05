@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 public class ListFinancialPostingInput {
 
-    private PostingType postingType;
+    private Long postingTypeId;
 
     private LocalDate startingDate;
 

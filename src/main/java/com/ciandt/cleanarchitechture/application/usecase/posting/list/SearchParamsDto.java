@@ -1,11 +1,14 @@
 package com.ciandt.cleanarchitechture.application.usecase.posting.list;
 
 import com.ciandt.cleanarchitechture.domain.entity.PostingType;
+import com.ciandt.cleanarchitechture.infrastructure.repository.PostingTypeRepository;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
 @Builder
+@Getter
 public class SearchParamsDto {
 
     private PostingType postingType;
@@ -14,10 +17,10 @@ public class SearchParamsDto {
 
     private LocalDate endDate;
 
-    public SearchParamsDto convert(ListFinancialPostingInput form) {
+    public static SearchParamsDto convert(ListFinancialPostingInput form, PostingTypeRepository postingTypeRepository) {
 
-        if (form.getPostingType() == null)
-            form.setPostingType(PostingType.builder().id(4L).name("All Types").build());
+        if (form.getPostingTypeId() == null)
+            form.setPostingTypeId(4L);
 
         if (form.getStartingDate() == null)
             form.setStartingDate(LocalDate.now().minusYears(1));
@@ -27,7 +30,7 @@ public class SearchParamsDto {
 
         return SearchParamsDto
                 .builder()
-                .postingType(form.getPostingType())
+                .postingType(postingTypeRepository.findById(form.getPostingTypeId()).get())
                 .startDate(form.getStartingDate())
                 .endDate(form.getEndingDate())
                 .build();
