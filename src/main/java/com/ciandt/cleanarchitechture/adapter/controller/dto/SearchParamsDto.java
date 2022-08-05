@@ -15,7 +15,7 @@ public class SearchParamsDto {
 
     private LocalDate endDate;
 
-    public SearchParamsDto converter(FinancialPostingForm form) {
+    public SearchParamsDto convert(FinancialPostingForm form) {
 
         if (form.getPostingTypeEntity() == null)
             form.setPostingTypeEntity(PostingTypeEntity.ALL_TYPES);
