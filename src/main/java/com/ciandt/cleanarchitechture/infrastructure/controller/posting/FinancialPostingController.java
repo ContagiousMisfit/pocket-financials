@@ -1,13 +1,13 @@
 package com.ciandt.cleanarchitechture.infrastructure.controller.posting;
 
-import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingOutput;
 import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingInput;
-import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
-import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingService;
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingOutput;
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,14 +21,16 @@ import javax.validation.Valid;
 public class FinancialPostingController {
 
     @Autowired
-    FinancialPostingService financialPostingService;
+    FinancialPostingUseCase financialPostingUseCase;
 
     @PostMapping
     public ResponseEntity<Page<FinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid FinancialPostingInput form) {
         Pageable pageable = PageRequest.of(0, 50);
-        Page<FinancialPostingEntity> financialPostingEntities = financialPostingService.getPostingByTypeOrPeriod(form, pageable);
-        Page<FinancialPostingOutput> postingDtos = FinancialPostingOutput.convert(financialPostingEntities);
-        return ResponseEntity.ok().body(postingDtos);
+        Page<FinancialPostingOutput> postings = financialPostingUseCase.getPostingByTypeOrPeriod(form, pageable);
+        if (postings == null || postings.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok().body(postings);
     }
 
 }

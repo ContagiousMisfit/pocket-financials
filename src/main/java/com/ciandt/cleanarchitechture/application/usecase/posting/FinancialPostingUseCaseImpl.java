@@ -8,14 +8,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FinancialPostingUseCaseImpl implements FinancialPostingService {
+public class FinancialPostingUseCaseImpl implements FinancialPostingUseCase {
 
     @Autowired
     FinancialPostingRepository financialPostingRepository;
 
     @Override
-    public Page<FinancialPostingEntity> getPostingByTypeOrPeriod(FinancialPostingInput form, Pageable pageable) {
-        return financialPostingRepository.findByTypeOrDateBetween(form.getPostingType(), form.getStartingDate(), form.getEndingDate(), pageable);
+    public Page<FinancialPostingOutput> getPostingByTypeOrPeriod(FinancialPostingInput form, Pageable pageable) {
+        Page<FinancialPostingEntity> postings = financialPostingRepository
+                .findByTypeOrDateBetween(form.getPostingType(), form.getStartingDate(), form.getEndingDate(), pageable);
+        return FinancialPostingOutput.convert(postings);
     }
 
 }

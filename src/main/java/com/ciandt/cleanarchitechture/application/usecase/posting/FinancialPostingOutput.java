@@ -33,6 +33,7 @@ public class FinancialPostingOutput {
         this.user = financialPostingEntity.getUser();
         this.type = financialPostingEntity.getType();
     }
+
     public static Page<FinancialPostingOutput> convert(Page<FinancialPostingEntity> financialPostingEntities) {
         return financialPostingEntities.map(FinancialPostingOutput::new);
     }
