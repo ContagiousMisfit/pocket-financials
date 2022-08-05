@@ -1,14 +1,14 @@
-package com.ciandt.cleanarchitechture.adapter.controller.dto;
+package com.ciandt.cleanarchitechture.application.usecase.posting;
 
-import com.ciandt.cleanarchitechture.entity.FinancialPostingEntity;
-import com.ciandt.cleanarchitechture.entity.PostingTypeEntity;
-import com.ciandt.cleanarchitechture.entity.UserEntity;
+import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
+import com.ciandt.cleanarchitechture.domain.entity.PostingType;
+import com.ciandt.cleanarchitechture.domain.entity.UserEntity;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class PostingDto {
+public class FinancialPostingOutput {
 
     private Long id;
 
@@ -22,9 +22,9 @@ public class PostingDto {
 
     private UserEntity user;
 
-    private PostingTypeEntity type;
+    private PostingType type;
 
-    public PostingDto(FinancialPostingEntity financialPostingEntity) {
+    public FinancialPostingOutput(FinancialPostingEntity financialPostingEntity) {
         this.id = financialPostingEntity.getId();
         this.date = financialPostingEntity.getDate();
         this.description = financialPostingEntity.getDescription();
@@ -33,7 +33,7 @@ public class PostingDto {
         this.user = financialPostingEntity.getUser();
         this.type = financialPostingEntity.getType();
     }
-    public static Page<PostingDto> convert(Page<FinancialPostingEntity> financialPostingEntities) {
-        return financialPostingEntities.map(PostingDto::new);
+    public static Page<FinancialPostingOutput> convert(Page<FinancialPostingEntity> financialPostingEntities) {
+        return financialPostingEntities.map(FinancialPostingOutput::new);
     }
 }

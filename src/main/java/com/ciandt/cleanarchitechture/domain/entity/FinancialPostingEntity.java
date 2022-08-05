@@ -1,4 +1,4 @@
-package com.ciandt.cleanarchitechture.entity;
+package com.ciandt.cleanarchitechture.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,7 +34,7 @@ public class FinancialPostingEntity {
     @ManyToOne
     private UserEntity user;
 
-    @Enumerated(EnumType.STRING)
-    private PostingTypeEntity type;
+    @ManyToOne
+    private PostingType type;
 
 }

@@ -1,7 +1,6 @@
-package com.ciandt.cleanarchitechture.adapter.controller.dto;
+package com.ciandt.cleanarchitechture.application.usecase.posting;
 
-import com.ciandt.cleanarchitechture.adapter.controller.form.FinancialPostingForm;
-import com.ciandt.cleanarchitechture.entity.PostingTypeEntity;
+import com.ciandt.cleanarchitechture.domain.entity.PostingType;
 import lombok.Builder;
 
 import java.time.LocalDate;
@@ -9,16 +8,16 @@ import java.time.LocalDate;
 @Builder
 public class SearchParamsDto {
 
-    private PostingTypeEntity postingTypeEntity;
+    private PostingType postingType;
 
     private LocalDate startDate;
 
     private LocalDate endDate;
 
-    public SearchParamsDto convert(FinancialPostingForm form) {
+    public SearchParamsDto convert(FinancialPostingInput form) {
 
-        if (form.getPostingTypeEntity() == null)
-            form.setPostingTypeEntity(PostingTypeEntity.ALL_TYPES);
+        if (form.getPostingType() == null)
+            form.setPostingType(PostingType.builder().id(4L).name("All Types").build());
 
         if (form.getStartingDate() == null)
             form.setStartingDate(LocalDate.now().minusYears(1));
@@ -28,7 +27,7 @@ public class SearchParamsDto {
 
         return SearchParamsDto
                 .builder()
-                .postingTypeEntity(form.getPostingTypeEntity())
+                .postingType(form.getPostingType())
                 .startDate(form.getStartingDate())
                 .endDate(form.getEndingDate())
                 .build();

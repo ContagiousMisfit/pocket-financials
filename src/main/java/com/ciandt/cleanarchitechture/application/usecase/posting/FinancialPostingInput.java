@@ -1,6 +1,6 @@
-package com.ciandt.cleanarchitechture.adapter.controller.form;
+package com.ciandt.cleanarchitechture.application.usecase.posting;
 
-import com.ciandt.cleanarchitechture.entity.PostingTypeEntity;
+import com.ciandt.cleanarchitechture.domain.entity.PostingType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-public class FinancialPostingForm {
+public class FinancialPostingInput {
 
-    private PostingTypeEntity postingTypeEntity;
+    private PostingType postingType;
 
     private LocalDate startingDate;
 

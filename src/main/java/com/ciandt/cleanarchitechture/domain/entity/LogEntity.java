@@ -1,4 +1,4 @@
-package com.ciandt.cleanarchitechture.entity;
+package com.ciandt.cleanarchitechture.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

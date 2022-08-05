@@ -1,15 +1,13 @@
-package com.ciandt.cleanarchitechture.adapter.controller;
+package com.ciandt.cleanarchitechture.infrastructure.controller.posting;
 
-import com.ciandt.cleanarchitechture.adapter.controller.dto.PostingDto;
-import com.ciandt.cleanarchitechture.adapter.controller.form.FinancialPostingForm;
-import com.ciandt.cleanarchitechture.entity.FinancialPostingEntity;
-import com.ciandt.cleanarchitechture.usecase.FinancialPostingService;
-import com.ciandt.cleanarchitechture.usecase.FinancialPostingServiceImpl;
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingOutput;
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingInput;
+import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,10 +24,10 @@ public class FinancialPostingController {
     FinancialPostingService financialPostingService;
 
     @PostMapping
-    public ResponseEntity<Page<PostingDto>> listFinancialPostings(@RequestBody @Valid FinancialPostingForm form) {
+    public ResponseEntity<Page<FinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid FinancialPostingInput form) {
         Pageable pageable = PageRequest.of(0, 50);
         Page<FinancialPostingEntity> financialPostingEntities = financialPostingService.getPostingByTypeOrPeriod(form, pageable);
-        Page<PostingDto> postingDtos = PostingDto.convert(financialPostingEntities);
+        Page<FinancialPostingOutput> postingDtos = FinancialPostingOutput.convert(financialPostingEntities);
         return ResponseEntity.ok().body(postingDtos);
     }
 
