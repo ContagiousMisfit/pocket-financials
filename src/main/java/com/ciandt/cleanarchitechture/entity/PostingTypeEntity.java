@@ -1,23 +1,10 @@
 package com.ciandt.cleanarchitechture.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.persistence.Table;
 
-import javax.persistence.*;
-
-@Entity
 @Table(name = "types")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class PostingTypeEntity {
+public enum PostingTypeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private String name;
+    INCOME, OUTCOME, INVESTMENT, ALL_TYPES;
 
 }

@@ -34,7 +34,7 @@ public class FinancialPostingEntity {
     @ManyToOne
     private UserEntity user;
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private PostingTypeEntity type;
 
 }
