@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class FormErrorDto {
+public class RequestErrorDto {
 
     private String field;
     private String error;

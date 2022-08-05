@@ -1,4 +1,4 @@
-package com.ciandt.cleanarchitechture.application.usecase.posting;
+package com.ciandt.cleanarchitechture.application.usecase.posting.list;
 
 import com.ciandt.cleanarchitechture.domain.entity.PostingType;
 import lombok.Builder;
@@ -14,7 +14,7 @@ public class SearchParamsDto {
 
     private LocalDate endDate;
 
-    public SearchParamsDto convert(FinancialPostingInput form) {
+    public SearchParamsDto convert(ListFinancialPostingInput form) {
 
         if (form.getPostingType() == null)
             form.setPostingType(PostingType.builder().id(4L).name("All Types").build());

@@ -1,4 +1,4 @@
-package com.ciandt.cleanarchitechture.application.usecase.posting;
+package com.ciandt.cleanarchitechture.application.usecase.posting.list;
 
 import com.ciandt.cleanarchitechture.domain.entity.PostingType;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-public class FinancialPostingInput {
+public class ListFinancialPostingInput {
 
     private PostingType postingType;
 

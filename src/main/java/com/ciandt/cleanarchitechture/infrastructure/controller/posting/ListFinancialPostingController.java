@@ -1,8 +1,8 @@
 package com.ciandt.cleanarchitechture.infrastructure.controller.posting;
 
-import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingInput;
-import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingOutput;
-import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingUseCase;
+import com.ciandt.cleanarchitechture.application.usecase.posting.list.ListFinancialPostingInput;
+import com.ciandt.cleanarchitechture.application.usecase.posting.list.ListFinancialPostingOutput;
+import com.ciandt.cleanarchitechture.application.usecase.posting.list.ListFinancialPostingUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/post")
-public class FinancialPostingController {
+@RequestMapping("/post/list")
+public class ListFinancialPostingController {
 
     @Autowired
-    FinancialPostingUseCase financialPostingUseCase;
+    ListFinancialPostingUseCase listFinancialPostingUseCase;
 
     @PostMapping
-    public ResponseEntity<Page<FinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid FinancialPostingInput form) {
+    public ResponseEntity<Page<ListFinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid ListFinancialPostingInput form) {
         Pageable pageable = PageRequest.of(0, 50);
-        Page<FinancialPostingOutput> postings = financialPostingUseCase.getPostingByTypeOrPeriod(form, pageable);
+        Page<ListFinancialPostingOutput> postings = listFinancialPostingUseCase.execute(form, pageable);
         if (postings == null || postings.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
