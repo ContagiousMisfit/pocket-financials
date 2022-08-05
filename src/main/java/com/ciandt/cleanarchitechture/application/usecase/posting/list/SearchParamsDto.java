@@ -26,7 +26,7 @@ public class SearchParamsDto {
             form.setStartingDate(LocalDate.now().minusYears(1));
 
         if (form.getEndingDate() == null)
-            form.setEndingDate(LocalDate.now());
+            form.setEndingDate(LocalDate.now().minusDays(3));
 
         return SearchParamsDto
                 .builder()
