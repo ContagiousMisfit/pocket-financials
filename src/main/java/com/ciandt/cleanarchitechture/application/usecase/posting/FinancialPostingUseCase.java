@@ -4,8 +4,8 @@ import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface FinancialPostingService {
+public interface FinancialPostingUseCase {
 
-    Page<FinancialPostingEntity> getPostingByTypeOrPeriod(FinancialPostingInput form, Pageable pageable);
+    FinancialPostingOutput getPostingByTypeOrPeriod(FinancialPostingInput form, Pageable pageable);
 
 }

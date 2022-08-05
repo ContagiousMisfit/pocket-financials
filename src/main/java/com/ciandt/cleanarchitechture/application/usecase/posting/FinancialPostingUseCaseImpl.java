@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FinancialPostingServiceImpl implements FinancialPostingService {
+public class FinancialPostingUseCaseImpl implements FinancialPostingService {
 
     @Autowired
     FinancialPostingRepository financialPostingRepository;
