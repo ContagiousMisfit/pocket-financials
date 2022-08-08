@@ -20,7 +20,7 @@ public class RequestErrorHandler {
     private MessageSource messageSource;
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class, IllegalArgumentException.class})
     public List<RequestErrorDto> handle(MethodArgumentNotValidException exception) {
         List<RequestErrorDto> dto = new ArrayList<>();
 

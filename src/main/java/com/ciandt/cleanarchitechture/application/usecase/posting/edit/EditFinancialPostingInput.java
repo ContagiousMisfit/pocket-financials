@@ -33,7 +33,7 @@ public class EditFinancialPostingInput {
     private Long postingTypeId;
 
     public EditFinancialPostingInput(LocalDate date, String description, BigDecimal value, boolean isActive, Long userId, Long postingTypeId) {
-        this.date = LocalDate.now();
+        this.date = date;
         this.description = description;
         this.value = value;
         this.userId = userId;

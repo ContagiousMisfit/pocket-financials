@@ -17,10 +17,10 @@ import javax.validation.Valid;
 public class EditFinancialPosting {
 
     @Autowired
-    EditFinancialPostingUseCase editFinancialPostingUseCase;
+    private EditFinancialPostingUseCase editFinancialPostingUseCase;
 
     @Autowired
-    GenerateLogUseCase generateLogUseCase;
+    private GenerateLogUseCase generateLogUseCase;
 
     @PutMapping("/{id}")
     @Transactional

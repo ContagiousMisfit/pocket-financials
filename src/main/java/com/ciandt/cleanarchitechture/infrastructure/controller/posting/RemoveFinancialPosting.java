@@ -18,10 +18,10 @@ import javax.transaction.Transactional;
 public class RemoveFinancialPosting {
 
     @Autowired
-    RemoveFinancialPostingUseCase removeFinancialPostingUseCase;
+    private RemoveFinancialPostingUseCase removeFinancialPostingUseCase;
 
     @Autowired
-    GenerateLogUseCase generateLogUseCase;
+    private GenerateLogUseCase generateLogUseCase;
 
     @PatchMapping("/{id}")
     @Transactional

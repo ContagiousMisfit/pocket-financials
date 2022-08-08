@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class GenerateLogUseCaseImpl implements GenerateLogUseCase {
 
     @Autowired
-    LogRepository logRepository;
+    private LogRepository logRepository;
 
     @Override
     public void execute(FinancialPostingOutput post, LogAction logAction) {

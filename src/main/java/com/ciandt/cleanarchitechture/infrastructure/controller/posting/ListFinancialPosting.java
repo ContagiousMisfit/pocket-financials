@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class ListFinancialPosting {
 
     @Autowired
-    ListFinancialPostingUseCase listFinancialPostingUseCase;
+    private ListFinancialPostingUseCase listFinancialPostingUseCase;
 
     @PostMapping
     public ResponseEntity<Page<FinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid ListFinancialPostingInput form) {

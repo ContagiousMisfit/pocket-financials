@@ -20,10 +20,10 @@ import javax.validation.Valid;
 public class InsertFinancialPosting {
 
     @Autowired
-    InsertFinancialPostingUseCase insertFinancialPostingUseCase;
+    private InsertFinancialPostingUseCase insertFinancialPostingUseCase;
 
     @Autowired
-    GenerateLogUseCase generateLogUseCase;
+    private GenerateLogUseCase generateLogUseCase;
 
     @PostMapping
     @Transactional

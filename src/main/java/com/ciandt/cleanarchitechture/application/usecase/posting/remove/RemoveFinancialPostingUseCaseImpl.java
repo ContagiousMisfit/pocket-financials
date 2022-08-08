@@ -13,7 +13,7 @@ import java.util.Optional;
 public class RemoveFinancialPostingUseCaseImpl implements RemoveFinancialPostingUseCase {
 
     @Autowired
-    FinancialPostingRepository financialPostingRepository;
+    private FinancialPostingRepository financialPostingRepository;
 
     @Override
     public FinancialPostingOutput execute(Long postId) {

@@ -15,10 +15,10 @@ import static com.ciandt.cleanarchitechture.application.usecase.posting.list.Sea
 public class ListFinancialPostingUseCaseImpl implements ListFinancialPostingUseCase {
 
     @Autowired
-    FinancialPostingRepository financialPostingRepository;
+    private FinancialPostingRepository financialPostingRepository;
 
     @Autowired
-    PostingTypeRepository postingTypeRepository;
+    private PostingTypeRepository postingTypeRepository;
 
     @Override
     public Page<FinancialPostingOutput> execute(ListFinancialPostingInput form, Pageable pageable) {
