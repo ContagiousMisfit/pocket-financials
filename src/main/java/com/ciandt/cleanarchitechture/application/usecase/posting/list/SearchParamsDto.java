@@ -23,10 +23,10 @@ public class SearchParamsDto {
             form.setPostingTypeId(4L);
 
         if (form.getStartingDate() == null)
-            form.setStartingDate(LocalDate.now().minusYears(1));
+            form.setStartingDate(LocalDate.now().minusYears(2));
 
         if (form.getEndingDate() == null)
-            form.setEndingDate(LocalDate.now().minusDays(3));
+            form.setEndingDate(LocalDate.now().minusYears(1));
 
         return SearchParamsDto
                 .builder()
