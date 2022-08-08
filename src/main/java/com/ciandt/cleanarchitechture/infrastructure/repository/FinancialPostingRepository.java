@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Repository
 public interface FinancialPostingRepository extends JpaRepository<FinancialPostingEntity, Long> {
 
-    Page<FinancialPostingEntity> findByTypeOrDateBetween(PostingType postingType, LocalDate startDate, LocalDate endDate, Pageable pageable);
+    Page<FinancialPostingEntity> findByIsActiveAndTypeOrIsActiveAndDateBetween(boolean isActive, PostingType postingType, boolean isActive2, LocalDate startDate, LocalDate endDate, Pageable pageable);
 
 }
 

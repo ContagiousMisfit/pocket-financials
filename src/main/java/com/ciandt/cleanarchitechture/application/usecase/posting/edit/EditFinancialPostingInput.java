@@ -42,7 +42,7 @@ public class EditFinancialPostingInput {
         this.postingTypeId = postingTypeId;
     }
 
-    public FinancialPostingEntity convert(PostingTypeRepository postingTypeRepository, UserRepository userRepository) {
+    public FinancialPostingEntity edit(PostingTypeRepository postingTypeRepository, UserRepository userRepository) {
         Optional<UserEntity> user = userRepository.findById(userId);
         Optional<PostingType> postingType = postingTypeRepository.findById(postingTypeId);
 

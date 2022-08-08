@@ -24,7 +24,7 @@ public class ListFinancialPostingUseCaseImpl implements ListFinancialPostingUseC
     public Page<FinancialPostingOutput> execute(ListFinancialPostingInput form, Pageable pageable) {
         SearchParamsDto searchParams = convert(form, postingTypeRepository);
         Page<FinancialPostingEntity> postings = financialPostingRepository
-                .findByTypeOrDateBetween(searchParams.getPostingType(), searchParams.getStartDate(), searchParams.getEndDate(), pageable);
+                .findByIsActiveAndTypeOrIsActiveAndDateBetween(true, searchParams.getPostingType(), true, searchParams.getStartDate(), searchParams.getEndDate(), pageable);
         return FinancialPostingOutput.convertToPage(postings);
     }
 

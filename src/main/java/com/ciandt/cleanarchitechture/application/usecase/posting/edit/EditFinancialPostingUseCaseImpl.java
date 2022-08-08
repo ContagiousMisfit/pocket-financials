@@ -6,7 +6,6 @@ import com.ciandt.cleanarchitechture.infrastructure.repository.FinancialPostingR
 import com.ciandt.cleanarchitechture.infrastructure.repository.PostingTypeRepository;
 import com.ciandt.cleanarchitechture.infrastructure.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,9 +20,8 @@ public class EditFinancialPostingUseCaseImpl implements EditFinancialPostingUseC
     @Autowired
     UserRepository userRepository;
 
-    public FinancialPostingOutput execute(EditFinancialPostingInput form, Pageable pageable) {
-        FinancialPostingEntity posting = form.convert(postingTypeRepository, userRepository);
-        financialPostingRepository.save(posting);
+    public FinancialPostingOutput execute(EditFinancialPostingInput form) {
+        FinancialPostingEntity posting = form.edit(postingTypeRepository, userRepository);
         return new FinancialPostingOutput(posting);
     }
 
