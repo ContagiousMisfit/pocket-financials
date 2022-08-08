@@ -3,6 +3,7 @@ package com.ciandt.cleanarchitechture.application.usecase.posting.edit;
 import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
 import com.ciandt.cleanarchitechture.domain.entity.PostingType;
 import com.ciandt.cleanarchitechture.domain.entity.UserEntity;
+import com.ciandt.cleanarchitechture.infrastructure.repository.FinancialPostingRepository;
 import com.ciandt.cleanarchitechture.infrastructure.repository.PostingTypeRepository;
 import com.ciandt.cleanarchitechture.infrastructure.repository.UserRepository;
 import lombok.Getter;
@@ -27,8 +28,6 @@ public class EditFinancialPostingInput {
     @DecimalMin("0.00")
     private BigDecimal value;
 
-    private boolean isActive;
-
     private Long userId;
 
     private Long postingTypeId;
@@ -37,27 +36,26 @@ public class EditFinancialPostingInput {
         this.date = LocalDate.now();
         this.description = description;
         this.value = value;
-        this.isActive = true;
         this.userId = userId;
         this.postingTypeId = postingTypeId;
     }
 
-    public FinancialPostingEntity edit(PostingTypeRepository postingTypeRepository, UserRepository userRepository) {
+    public FinancialPostingEntity edit(Long postId, PostingTypeRepository postingTypeRepository, UserRepository userRepository, FinancialPostingRepository financialPostingRepository) {
+        Optional<FinancialPostingEntity> optional = financialPostingRepository.findById(postId);
+        if (optional == null)
+            throw new IllegalArgumentException();
+
+        FinancialPostingEntity posting = optional.get();
+
         Optional<UserEntity> user = userRepository.findById(userId);
         Optional<PostingType> postingType = postingTypeRepository.findById(postingTypeId);
 
-        if (user == null || postingType == null)
-            throw new IllegalArgumentException();
+        posting.setType(postingType.get());
+        posting.setUser(user.get());
+        posting.setValue(this.value);
+        posting.setDescription(this.description);
 
-        return new FinancialPostingEntity()
-                .builder()
-                .date(date)
-                .description(description)
-                .value(value)
-                .isActive(isActive)
-                .user(user.get())
-                .type(postingType.get())
-                .build();
+        return posting;
     }
 
 }

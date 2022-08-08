@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/post/insert")
-public class InsertFinancialPostingController {
+public class InsertFinancialPosting {
 
     @Autowired
     InsertFinancialPostingUseCase insertFinancialPostingUseCase;

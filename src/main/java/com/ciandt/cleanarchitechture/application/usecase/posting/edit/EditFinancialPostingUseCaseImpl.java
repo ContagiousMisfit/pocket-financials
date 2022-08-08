@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 public class EditFinancialPostingUseCaseImpl implements EditFinancialPostingUseCase {
 
     @Autowired
-    FinancialPostingRepository financialPostingRepository;
-
-    @Autowired
     PostingTypeRepository postingTypeRepository;
 
     @Autowired
     UserRepository userRepository;
 
-    public FinancialPostingOutput execute(EditFinancialPostingInput form) {
-        FinancialPostingEntity posting = form.edit(postingTypeRepository, userRepository);
+    @Autowired
+    FinancialPostingRepository financialPostingRepository;
+
+    public FinancialPostingOutput execute(Long postId, EditFinancialPostingInput form) {
+        FinancialPostingEntity posting = form.edit(postId, postingTypeRepository, userRepository, financialPostingRepository);
         return new FinancialPostingOutput(posting);
     }
 

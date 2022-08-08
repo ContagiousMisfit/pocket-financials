@@ -4,6 +4,6 @@ import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostin
 
 public interface EditFinancialPostingUseCase {
 
-    FinancialPostingOutput execute(EditFinancialPostingInput form);
+    FinancialPostingOutput execute(Long postId, EditFinancialPostingInput form);
 
 }

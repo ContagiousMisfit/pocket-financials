@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/post/list")
-public class ListFinancialPostingController {
+public class ListFinancialPosting {
 
     @Autowired
     ListFinancialPostingUseCase listFinancialPostingUseCase;

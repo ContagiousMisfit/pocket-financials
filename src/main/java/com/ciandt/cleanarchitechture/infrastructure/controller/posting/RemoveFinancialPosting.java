@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/post/remove")
-public class RemoveFinancialPostingController {
+public class RemoveFinancialPosting {
 
     @Autowired
     RemoveFinancialPostingUseCase removeFinancialPostingUseCase;

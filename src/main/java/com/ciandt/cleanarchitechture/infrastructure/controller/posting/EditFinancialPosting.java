@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/post/edit")
-public class EditFinancialPostingController {
+public class EditFinancialPosting {
 
     @Autowired
     EditFinancialPostingUseCase editFinancialPostingUseCase;
@@ -25,7 +25,7 @@ public class EditFinancialPostingController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<FinancialPostingOutput> editFinancialPosting(@PathVariable Long id, @RequestBody @Valid EditFinancialPostingInput form) {
-        FinancialPostingOutput posting = editFinancialPostingUseCase.execute(form);
+        FinancialPostingOutput posting = editFinancialPostingUseCase.execute(id, form);
         generateLogUseCase.execute(posting, LogAction.EDITED);
         return ResponseEntity.ok().body(posting);
     }
