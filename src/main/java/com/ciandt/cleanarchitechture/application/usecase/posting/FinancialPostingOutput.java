@@ -1,4 +1,4 @@
-package com.ciandt.cleanarchitechture.application.usecase.posting.list;
+package com.ciandt.cleanarchitechture.application.usecase.posting;
 
 import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
 import com.ciandt.cleanarchitechture.domain.entity.PostingType;
@@ -8,8 +8,9 @@ import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 @Getter
-public class ListFinancialPostingOutput {
+public class FinancialPostingOutput {
 
     private Long id;
 
@@ -25,7 +26,7 @@ public class ListFinancialPostingOutput {
 
     private PostingType type;
 
-    public ListFinancialPostingOutput(FinancialPostingEntity financialPostingEntity) {
+    public FinancialPostingOutput(FinancialPostingEntity financialPostingEntity) {
         this.id = financialPostingEntity.getId();
         this.date = financialPostingEntity.getDate();
         this.description = financialPostingEntity.getDescription();
@@ -35,7 +36,8 @@ public class ListFinancialPostingOutput {
         this.type = financialPostingEntity.getType();
     }
 
-    public static Page<ListFinancialPostingOutput> convert(Page<FinancialPostingEntity> financialPostingEntities) {
-        return financialPostingEntities.map(ListFinancialPostingOutput::new);
+    public static Page<FinancialPostingOutput> convertToPage(Page<FinancialPostingEntity> financialPostingEntities) {
+        return financialPostingEntities.map(FinancialPostingOutput::new);
     }
+
 }

@@ -1,7 +1,7 @@
 package com.ciandt.cleanarchitechture.infrastructure.controller.posting;
 
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingOutput;
 import com.ciandt.cleanarchitechture.application.usecase.posting.list.ListFinancialPostingInput;
-import com.ciandt.cleanarchitechture.application.usecase.posting.list.ListFinancialPostingOutput;
 import com.ciandt.cleanarchitechture.application.usecase.posting.list.ListFinancialPostingUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,9 +22,9 @@ public class ListFinancialPostingController {
     ListFinancialPostingUseCase listFinancialPostingUseCase;
 
     @PostMapping
-    public ResponseEntity<Page<ListFinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid ListFinancialPostingInput form) {
+    public ResponseEntity<Page<FinancialPostingOutput>> listFinancialPostings(@RequestBody @Valid ListFinancialPostingInput form) {
         Pageable pageable = PageRequest.of(0, 50);
-        Page<ListFinancialPostingOutput> postings = listFinancialPostingUseCase.execute(form, pageable);
+        Page<FinancialPostingOutput> postings = listFinancialPostingUseCase.execute(form, pageable);
         if (postings == null || postings.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

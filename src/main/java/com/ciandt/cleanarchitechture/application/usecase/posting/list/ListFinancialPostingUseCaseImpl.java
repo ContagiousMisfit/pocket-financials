@@ -1,5 +1,6 @@
 package com.ciandt.cleanarchitechture.application.usecase.posting.list;
 
+import com.ciandt.cleanarchitechture.application.usecase.posting.FinancialPostingOutput;
 import com.ciandt.cleanarchitechture.domain.entity.FinancialPostingEntity;
 import com.ciandt.cleanarchitechture.infrastructure.repository.FinancialPostingRepository;
 import com.ciandt.cleanarchitechture.infrastructure.repository.PostingTypeRepository;
@@ -20,11 +21,11 @@ public class ListFinancialPostingUseCaseImpl implements ListFinancialPostingUseC
     PostingTypeRepository postingTypeRepository;
 
     @Override
-    public Page<ListFinancialPostingOutput> execute(ListFinancialPostingInput form, Pageable pageable) {
+    public Page<FinancialPostingOutput> execute(ListFinancialPostingInput form, Pageable pageable) {
         SearchParamsDto searchParams = convert(form, postingTypeRepository);
         Page<FinancialPostingEntity> postings = financialPostingRepository
                 .findByTypeOrDateBetween(searchParams.getPostingType(), searchParams.getStartDate(), searchParams.getEndDate(), pageable);
-        return ListFinancialPostingOutput.convert(postings);
+        return FinancialPostingOutput.convertToPage(postings);
     }
 
 }
